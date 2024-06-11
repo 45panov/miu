@@ -8,10 +8,20 @@
 """
 import re
 
-def next_theorem(previous_theorem, rule):
-    return re.sub(rule, "iu", previous_theorem)
+axiom = 'mi'
+previous_theorem = axiom
+#frst_rule = {'pattern': r'i$', 'repl': 'iu'}
+#scnd_rule = {'pattern': r'[ui]*[uim]$', }
+#
+#def next_theorem(rule: dict, previous_theorem: str):
+#    return re.sub(rule['pattern'], rule['repl'], previous_theorem)
 
-if __name__ == '__main__':
-    axiom = "mi" # Source string
-    pattern_of_rule = r'i$'
-    print(next_theorem(axiom, pattern_of_rule))
+def first_rule(income_str):
+    return re.sub(r'i$', 'iu', income_str)
+
+def second_rule(income_str):
+    res = re.search(r'[ui]*[uim]$', income_str)
+    return income_str + res.group(0)
+
+def third_rule(income_str):
+    return re.sub('iii', 'u', income_str)
