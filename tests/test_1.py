@@ -3,19 +3,24 @@ import pytest
 
 
 # Тест Правила №1 (Если у вас есть строчка, кончающаяся на i, вы можете
-# прибавить u в конце.) 
+# прибавить u в конце.)
 
-def test_first_rule():
+@pytest.mark.parametrize(
+    "input_str, expected_output_str", [('mi', 'miu'),
+                                       ('muiu', 'muiu')]
+)
+def test_first_rule(input_str, expected_output_str):
 
     assert first_rule(
-        previous_theorem) == "miu", "Expect first theorem to be \"miu\""
+        input_str) == expected_output_str, "Если у вас есть строчка, кончающаяся на i, вы можете прибавить u в конце."
 
 
 # Тест Правила №2 (Если у вас имеется mx, вы можете прибавить mxx).
 
 @pytest.mark.parametrize(
     "input_str, expected_output_str", [('mi', 'mii'),
-                                       ('mmuu', 'mmuuuu')]
+                                       ('mmuu', 'mmuuuu'),
+                                       ('mm', 'mmm')]
 )
 def test_second_rule(input_str, expected_output_str):
 
