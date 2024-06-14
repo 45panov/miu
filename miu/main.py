@@ -25,3 +25,6 @@ def second_rule(income_str):
 
 def third_rule(income_str):
     return re.sub('iii', 'u', income_str)
+
+def fourth_rule(income_str):
+    return re.sub('uu', '', income_str)

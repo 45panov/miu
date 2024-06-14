@@ -2,26 +2,47 @@ from miu import *
 import pytest
 
 
-#def test_variable():
-#    assert axiom == "mi", "Expect axiom to be \"mi\""
-
+# Тест Правила №1 (Если у вас есть строчка, кончающаяся на i, вы можете
+# прибавить u в конце.) 
 
 def test_first_rule():
-    
+
     assert first_rule(
         previous_theorem) == "miu", "Expect first theorem to be \"miu\""
 
-def test_second_rule():
 
-    assert second_rule(previous_theorem) == "mii", "Expect 'mi' is 'mii' after second_rule is been used over it."
+# Тест Правила №2 (Если у вас имеется mx, вы можете прибавить mxx).
 
 @pytest.mark.parametrize(
-    "input_str, expected_output_str", [('miii', 'mu')]
+    "input_str, expected_output_str", [('mi', 'mii'),
+                                       ('mmuu', 'mmuuuu')]
+)
+def test_second_rule(input_str, expected_output_str):
+
+    assert second_rule(
+        input_str) == expected_output_str, "Если у вас имеется mx, вы можете прибавить mxx."
+
+
+# Тест Правила №3 (Если у вас в строчке имеется iii, вы можете заменить его на
+# u).
+
+@pytest.mark.parametrize(
+    "input_str, expected_output_str", [('miii', 'mu'),
+                                       ('miiiummiuuuiiimmm', 'muummiuuuummm')]
 )
 def test_third_rule(input_str, expected_output_str):
 
-    assert third_rule(input_str) == expected_output_str, "Expect 'miii' is 'mu' after third_rule() is been used over it."
+    assert third_rule(
+        input_str) == expected_output_str, "Expect 'miii' is 'mu' after third_rule() is been used over it."
 
-#test_first_rule()
-#test_second_rule()
-#test_third_rule()
+
+# Тест правила №4 (Если у вас есть uu, вы можете её опустить).
+
+@pytest.mark.parametrize(
+    "input_str, expected_output_str", [('muu', 'm'),
+                                       ('miuuiimuu', 'miiim')]
+)
+def test_fourth_rule(input_str, expected_output_str):
+
+    assert fourth_rule(
+        input_str) == expected_output_str, "Expect 'miii' is 'mu' after third_rule() is been used over it."
