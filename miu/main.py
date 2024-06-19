@@ -6,25 +6,23 @@
     встречается 'iii', её можно заменить на 'u'.
 
 """
-import re
-
+from re import sub, search
+from itertools import product
 axiom = 'mi'
 previous_theorem = axiom
-#frst_rule = {'pattern': r'i$', 'repl': 'iu'}
-#scnd_rule = {'pattern': r'[ui]*[uim]$', }
-#
-#def next_theorem(rule: dict, previous_theorem: str):
-#    return re.sub(rule['pattern'], rule['repl'], previous_theorem)
 
 def first_rule(income_str):
-    return re.sub(r'i$', 'iu', income_str)
+    return sub(r'i$', 'iu', income_str)
 
 def second_rule(income_str):
-    res = re.search(r'[ui]*[uim]$', income_str)
+    res = search(r'[ui]*[uim]$', income_str)
     return income_str + res.group(0)
 
 def third_rule(income_str):
-    return re.sub('iii', 'u', income_str)
+    return sub('iii', 'u', income_str)
 
 def fourth_rule(income_str):
-    return re.sub('uu', '', income_str)
+    return sub('uu', '', income_str)
+
+if __name__ == "__main__.py":
+    pass
